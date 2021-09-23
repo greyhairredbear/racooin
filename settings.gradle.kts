@@ -16,7 +16,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("android-template")
+rootProject.name = ("racooin")
 
 include(
     "app"

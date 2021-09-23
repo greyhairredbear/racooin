@@ -1,4 +1,4 @@
-package com.greyhairredbear.androidtemplate
+package com.greyhairredbear.racooin
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

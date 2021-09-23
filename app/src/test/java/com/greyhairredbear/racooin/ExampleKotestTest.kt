@@ -1,4 +1,4 @@
-package com.greyhairredbear.androidtemplate
+package com.greyhairredbear.racooin
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
