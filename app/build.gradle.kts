@@ -53,6 +53,8 @@ dependencies {
     implementation(Core.STD_LIB)
     implementation(Core.KOTLINX_COROUTINES)
 
+    implementation(Core.ARROW_CORE)
+
     implementation(Server.KTOR_CLIENT_CORE)
     implementation(Server.KTOR_CLIENT_ANDROID)
     implementation(Server.KTOR_CLIENT_SERIALIATION)

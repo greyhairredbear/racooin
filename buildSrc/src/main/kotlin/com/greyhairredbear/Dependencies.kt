@@ -13,7 +13,7 @@ object Versions {
     const val BUILD_TOOLS_VERSION = "7.0.2"
     const val KOTLIN_COROUTINES_VERSION = "1.5.1"
 
-    const val ARROW_VERSION = "0.13.2"
+    const val ARROW_VERSION = "1.0.0"
     const val KTOR_VERSION = "1.6.2"
 
     const val KOTEST_VERSION = "4.6.2"
