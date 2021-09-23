@@ -59,6 +59,10 @@ dependencies {
     implementation(Server.KTOR_CLIENT_ANDROID)
     implementation(Server.KTOR_CLIENT_SERIALIATION)
 
+    // TODO
+    implementation("io.ktor:ktor-client-logging:1.6.2")
+    implementation("ch.qos.logback:logback-classic:1.2.6")
+
     implementation(Compose.COMPOSE_UI)
     implementation(Compose.COMPOSE_MATERIAL)
     implementation(Compose.COMPOSE_UI_TOOLING_PREVIEW)
