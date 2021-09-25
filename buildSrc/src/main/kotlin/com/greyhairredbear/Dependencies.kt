@@ -1,12 +1,14 @@
-import Versions.KOTEST_VERSION
-import Versions.MOCKK_VERSION
-import Versions.KOTLIN_COROUTINES_VERSION
 import Core.KOTLINX_GROUP
 import Versions.ANDROID_MATERIAL_VERSION
 import Versions.ARROW_VERSION
 import Versions.BUILD_TOOLS_VERSION
 import Versions.COMPOSE_VERSION
+import Versions.KOTEST_EXTENSIONS_ARROW_VERSION
+import Versions.KOTEST_VERSION
+import Versions.KOTLIN_COROUTINES_VERSION
 import Versions.KTOR_VERSION
+import Versions.LOGBACK_VERSION
+import Versions.MOCKK_VERSION
 import Versions.SUPPORT_ACTIVITY_VERSION
 
 object Versions {
@@ -15,8 +17,10 @@ object Versions {
 
     const val ARROW_VERSION = "1.0.0"
     const val KTOR_VERSION = "1.6.2"
+    const val LOGBACK_VERSION = "1.2.6"
 
     const val KOTEST_VERSION = "4.6.2"
+    const val KOTEST_EXTENSIONS_ARROW_VERSION = "1.0.3"
     const val MOCKK_VERSION = "1.12.0"
 
     const val COMPOSE_VERSION = "1.0.1"
@@ -43,10 +47,13 @@ object Plugins {
     const val ANDROID = "android"
 
     const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:$BUILD_TOOLS_VERSION"
-    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${BuildPluginsVersions.KOTLIN}"
+    const val KOTLIN_GRADLE_PLUGIN =
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:${BuildPluginsVersions.KOTLIN}"
     const val ANDROID_APPLICATION = "com.android.application"
     const val KOTLIN_ANDROID = "kotlin-android"
 
+    const val LIB_JAVA = "java-library"
+    const val LIB_KOTLIN = "kotlin"
 }
 
 object Sdk {
@@ -60,7 +67,8 @@ object Core {
     const val KOTLINX_GROUP = "org.jetbrains.kotlinx"
 
     const val STD_LIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    const val KOTLINX_COROUTINES = "$KOTLINX_GROUP:kotlinx-coroutines-core:$KOTLIN_COROUTINES_VERSION"
+    const val KOTLINX_COROUTINES =
+        "$KOTLINX_GROUP:kotlinx-coroutines-core:$KOTLIN_COROUTINES_VERSION"
 
     const val ARROW_CORE = "$ARROW_GROUP:arrow-core:$ARROW_VERSION"
     const val ARROW_FX = "$ARROW_GROUP:arrow-fx:$ARROW_VERSION"
@@ -71,16 +79,21 @@ object Core {
 
 object Server {
     private const val KTOR_GROUP = "io.ktor"
+    private const val LOGBACK_GROUP = "ch.qos.logback"
 
     const val KTOR_CLIENT_CORE = "$KTOR_GROUP:ktor-client-core:$KTOR_VERSION"
     const val KTOR_CLIENT_CIO = "$KTOR_GROUP:ktor-client-cio:$KTOR_VERSION" // TODO: needed?
+    const val KTOR_CLIENT_LOGGING = "$KTOR_GROUP:ktor-client-logging:$KTOR_VERSION"
     const val KTOR_CLIENT_ANDROID = "$KTOR_GROUP:ktor-client-android:$KTOR_VERSION"
-    const val KTOR_CLIENT_SERIALIATION = "$KTOR_GROUP:ktor-client-serialization:$KTOR_VERSION"
+    const val KTOR_CLIENT_SERIALIZATION = "$KTOR_GROUP:ktor-client-serialization:$KTOR_VERSION"
+
+    const val LOGBACK = "$LOGBACK_GROUP:logback-classic:$LOGBACK_VERSION"
 }
 
 object SupportLibs {
     const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT_VERSION}"
-    const val ANDROIDX_CONSTRAINT_LAYOUT = "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT_VERSION}"
+    const val ANDROIDX_CONSTRAINT_LAYOUT =
+        "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT_VERSION}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX_VERSION}"
     const val ANDROIDX_ACTIVITY = "androidx.activity:activity-compose:$SUPPORT_ACTIVITY_VERSION"
 }
@@ -103,19 +116,25 @@ object GoogleLibs {
 
 object Testing {
     private const val KOTEST_GROUP = "io.kotest"
+    private const val KOTEST_EXTENSIONS_GROUP = "io.kotest.extensions"
     const val KOTEST_RUNNER = "$KOTEST_GROUP:kotest-runner-junit5-jvm:$KOTEST_VERSION"
     const val KOTEST_JUNIT_RUNNER = "$KOTEST_GROUP:kotest-runner-junit5:$KOTEST_VERSION"
     const val KOTEST_ASSERTIONS = "$KOTEST_GROUP:kotest-assertions-core-jvm:$KOTEST_VERSION"
+    const val KOTEST_EXTENSIONS_ARROW =
+        "$KOTEST_EXTENSIONS_GROUP:kotest-assertions-arrow:$KOTEST_EXTENSIONS_ARROW_VERSION"
     const val KOTEST_PROPERTIES = "$KOTEST_GROUP:kotest-property-jvm:$KOTEST_VERSION"
 
     const val MOCKK = "io.mockk:mockk:$MOCKK_VERSION"
 
-    const val KOTLINX_COROUTINES_TEST = "$KOTLINX_GROUP:kotlinx-coroutines-test:$KOTLIN_COROUTINES_VERSION"
+    const val KOTLINX_COROUTINES_TEST =
+        "$KOTLINX_GROUP:kotlinx-coroutines-test:$KOTLIN_COROUTINES_VERSION"
 }
 
 object AndroidTesting {
     const val ANDROIDX_TEST_RULES = "androidx.test:rules:${Versions.ANDROIDX_TEST_VERSION}"
     const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:${Versions.ANDROIDX_TEST_VERSION}"
-    const val ANDROIDX_TEST_EXT_JUNIT = "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT_VERSION}"
-    const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE_VERSION}"
+    const val ANDROIDX_TEST_EXT_JUNIT =
+        "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT_VERSION}"
+    const val ESPRESSO_CORE =
+        "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE_VERSION}"
 }

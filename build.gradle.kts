@@ -26,6 +26,10 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }
 
 subprojects {

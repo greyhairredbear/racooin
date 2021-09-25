@@ -18,6 +18,6 @@ pluginManagement {
 
 rootProject.name = ("racooin")
 
-include(
-    "app"
-)
+include("app")
+include(":core")
+include(":apiclient")

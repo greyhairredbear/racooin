@@ -39,7 +39,6 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = BuildPluginsVersions.KOTLIN
         kotlinCompilerExtensionVersion = Versions.COMPOSE_VERSION
     }
 
@@ -50,18 +49,10 @@ android {
 }
 
 dependencies {
-    implementation(Core.STD_LIB)
+    project(":core")
+    project(":apiclient")
+
     implementation(Core.KOTLINX_COROUTINES)
-
-    implementation(Core.ARROW_CORE)
-
-    implementation(Server.KTOR_CLIENT_CORE)
-    implementation(Server.KTOR_CLIENT_ANDROID)
-    implementation(Server.KTOR_CLIENT_SERIALIATION)
-
-    // TODO
-    implementation("io.ktor:ktor-client-logging:1.6.2")
-    implementation("ch.qos.logback:logback-classic:1.2.6")
 
     implementation(Compose.COMPOSE_UI)
     implementation(Compose.COMPOSE_MATERIAL)
@@ -76,6 +67,7 @@ dependencies {
     testImplementation(Testing.KOTEST_RUNNER)
     testImplementation(Testing.KOTEST_JUNIT_RUNNER)
     testImplementation(Testing.KOTEST_ASSERTIONS)
+    testImplementation(Testing.KOTEST_EXTENSIONS_ARROW)
     testImplementation(Testing.KOTEST_PROPERTIES)
     testImplementation(Testing.MOCKK)
     testImplementation(Testing.KOTLINX_COROUTINES_TEST)
