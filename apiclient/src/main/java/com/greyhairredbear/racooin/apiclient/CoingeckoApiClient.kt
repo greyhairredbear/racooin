@@ -25,6 +25,8 @@ class CoingeckoApiClient : ApiClient {
         }
     }
 
+    // TODO: deserialize {"bitcoin":{"eur":35804},"ethereum":{"eur":2456.5},"dogecoin":{"eur":0.17116}}
+
     override suspend fun fetchCurrencyRates(): Either<ApiClientError, List<CurrencyRate>> {
         // TODO extract etc
         val test: HttpResponse = client

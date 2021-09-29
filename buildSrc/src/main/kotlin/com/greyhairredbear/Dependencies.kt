@@ -7,6 +7,7 @@ import Versions.KOTEST_EXTENSIONS_ARROW_VERSION
 import Versions.KOTEST_VERSION
 import Versions.KOTLIN_COROUTINES_VERSION
 import Versions.KTOR_VERSION
+import Versions.LIFECYCLE_VIEWMODEL_COMPOSE_VERSION
 import Versions.LOGBACK_VERSION
 import Versions.MOCKK_VERSION
 import Versions.SUPPORT_ACTIVITY_VERSION
@@ -29,6 +30,7 @@ object Versions {
     const val CONSTRAINT_LAYOUT_VERSION = "2.0.4"
     const val CORE_KTX_VERSION = "1.6.0"
     const val ANDROID_MATERIAL_VERSION = "1.4.0"
+    const val LIFECYCLE_VIEWMODEL_COMPOSE_VERSION = "1.0.0-alpha06"
 
     const val ANDROIDX_TEST_EXT_VERSION = "1.1.2"
     const val ANDROIDX_TEST_VERSION = "1.3.0"
@@ -91,11 +93,16 @@ object Server {
 }
 
 object SupportLibs {
+    const val ANDROIDX_LIFECYCLE_GROUP = "androidx.lifecycle"
     const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT_VERSION}"
     const val ANDROIDX_CONSTRAINT_LAYOUT =
         "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT_VERSION}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX_VERSION}"
     const val ANDROIDX_ACTIVITY = "androidx.activity:activity-compose:$SUPPORT_ACTIVITY_VERSION"
+
+
+    const val ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE =
+        "$ANDROIDX_LIFECYCLE_GROUP:lifecycle-viewmodel-compose:$LIFECYCLE_VIEWMODEL_COMPOSE_VERSION"
 }
 
 object Compose {

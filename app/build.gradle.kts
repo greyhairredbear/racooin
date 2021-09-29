@@ -49,8 +49,8 @@ android {
 }
 
 dependencies {
-    project(":core")
-    project(":apiclient")
+    implementation(project(mapOf("path" to ":core")))
+    implementation(project(mapOf("path" to ":apiclient")))
 
     implementation(Core.KOTLINX_COROUTINES)
 
@@ -58,6 +58,8 @@ dependencies {
     implementation(Compose.COMPOSE_MATERIAL)
     implementation(Compose.COMPOSE_UI_TOOLING_PREVIEW)
     implementation(Compose.COMPOSE_FOUNDATION)
+
+    implementation(SupportLibs.ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE)
 
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
