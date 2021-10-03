@@ -4,7 +4,7 @@ import arrow.core.Either
 import arrow.core.right
 import com.greyhairredbear.racooin.core.ApiClient
 import com.greyhairredbear.racooin.core.ApiClientError
-import com.greyhairredbear.racooin.core.CurrencyRate
+import com.greyhairredbear.racooin.core.model.CurrencyRate
 import io.ktor.client.HttpClient
 import io.ktor.client.call.receive
 import io.ktor.client.features.logging.DEFAULT
@@ -16,6 +16,8 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
+
+typealias CurrencyRatesResponse = List<CurrencyRate>
 
 class CoingeckoApiClient : ApiClient {
     private val client = HttpClient {
@@ -32,7 +34,7 @@ class CoingeckoApiClient : ApiClient {
         val test: HttpResponse = client
             .get("https://api.coingecko.com/api/v3/simple/price") {
                 parameter("ids", "ethereum,bitcoin,dogecoin")
-                parameter("vs_currencies", "eur")
+                parameter("vs_currencies", "eur,usd")
                 accept(ContentType.Application.Json)
             }
         val ignored: String = test.receive()

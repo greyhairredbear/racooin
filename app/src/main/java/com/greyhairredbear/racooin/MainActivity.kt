@@ -11,9 +11,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import arrow.core.computations.either
 import com.greyhairredbear.racooin.apiclient.CoingeckoApiClient
 import com.greyhairredbear.racooin.core.ApiClient
-import com.greyhairredbear.racooin.core.CurrencyRate
+import com.greyhairredbear.racooin.core.ApiClientError
+import com.greyhairredbear.racooin.core.model.CurrencyRate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -56,13 +58,18 @@ private fun MainScreen(
 
 class MainViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<Resource<List<CurrencyRate>>>(Resource.Loading)
-    private val apiClient: ApiClient = CoingeckoApiClient()
     val uiState: StateFlow<Resource<List<CurrencyRate>>> = _uiState
+    private val apiClient: ApiClient = CoingeckoApiClient() // TODO: DI
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            val currencyRateResult = apiClient.fetchCurrencyRates()
-            currencyRateResult.fold(
+            val test = either<ApiClientError, List<CurrencyRate>> {
+                val currencyRateResult = apiClient.fetchCurrencyRates().bind()
+                currencyRateResult
+            }
+
+
+            test.fold(
                 ifRight = { _uiState.value = Resource.Success(it) },
                 ifLeft = { _uiState.value = Resource.Error("failed api call") },
             )
