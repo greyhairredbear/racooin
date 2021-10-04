@@ -1,7 +1,7 @@
 package com.greyhairredbear.racooin.apiclient
 
 import arrow.core.Either
-import arrow.core.right
+import com.greyhairredbear.racooin.core.ApiCallFailed
 import com.greyhairredbear.racooin.core.ApiClient
 import com.greyhairredbear.racooin.core.ApiClientError
 import com.greyhairredbear.racooin.core.model.CryptoCurrency
@@ -9,7 +9,7 @@ import com.greyhairredbear.racooin.core.model.CurrencyRate
 import com.greyhairredbear.racooin.core.model.FiatBalance
 import com.greyhairredbear.racooin.core.model.FiatCurrency
 import io.ktor.client.HttpClient
-import io.ktor.client.call.receive
+import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.logging.DEFAULT
@@ -18,9 +18,10 @@ import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.request.accept
 import io.ktor.client.request.get
+import io.ktor.client.request.host
 import io.ktor.client.request.parameter
-import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
+import io.ktor.http.URLProtocol
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -52,23 +53,33 @@ data class FiatBalanceResponse(val eur: Double, val usd: Double)
 // TODO extract client setup etc
 class CoingeckoApiClient : ApiClient {
     private val client = HttpClient {
+
         install(Logging) {
             logger = Logger.DEFAULT
             level = LogLevel.ALL
         }
+
         install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
+
+        defaultRequest {
+            host = "api.coingecko.com/api/v3/simple"
+            url {
+                protocol = URLProtocol.HTTPS
+            }
+            accept(ContentType.Application.Json)
+        }
+
     }
 
-    override suspend fun fetchCurrencyRates(): Either<ApiClientError, List<CurrencyRate>> {
-        val currencyRatesResponse: CurrencyRatesResponse = client
-            .get("https://api.coingecko.com/api/v3/simple/price") {
+    override suspend fun fetchCurrencyRates(): Either<ApiClientError, List<CurrencyRate>> =
+        Either.catch {
+            val result = client.get<CurrencyRatesResponse> {
+                url { encodedPath = "/price" }
                 parameter("ids", "ethereum,bitcoin,dogecoin,litecoin,ripple")
                 parameter("vs_currencies", "eur,usd")
-                accept(ContentType.Application.Json)
             }
-
-        return currencyRatesResponse.toCurrencyRates().right()
-    }
+            result.toCurrencyRates()
+        }.mapLeft { ApiCallFailed }
 }
