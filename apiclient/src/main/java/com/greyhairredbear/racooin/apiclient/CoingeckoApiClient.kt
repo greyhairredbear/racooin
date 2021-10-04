@@ -5,7 +5,7 @@ import com.greyhairredbear.racooin.core.interfaces.ApiCallFailed
 import com.greyhairredbear.racooin.core.interfaces.ApiClient
 import com.greyhairredbear.racooin.core.interfaces.ApiClientError
 import com.greyhairredbear.racooin.core.model.CryptoCurrency
-import com.greyhairredbear.racooin.core.model.CurrencyRate
+import com.greyhairredbear.racooin.core.model.CryptoCurrencyRate
 import com.greyhairredbear.racooin.core.model.FiatBalance
 import com.greyhairredbear.racooin.core.model.FiatCurrency
 import io.ktor.client.HttpClient
@@ -32,7 +32,7 @@ data class CurrencyRatesResponse(
     val litecoin: FiatBalanceResponse,
     val ripple: FiatBalanceResponse,
 ) {
-    fun toCurrencyRates(): List<CurrencyRate> =
+    fun toCurrencyRates(): List<CryptoCurrencyRate> =
         mapOf(
             CryptoCurrency.BITCOIN to bitcoin,
             CryptoCurrency.ETHEREUM to ethereum,
@@ -41,8 +41,8 @@ data class CurrencyRatesResponse(
             CryptoCurrency.RIPPLE to ripple,
         ).flatMap {
             listOf(
-                CurrencyRate(it.key, FiatBalance(FiatCurrency.EURO, it.value.eur)),
-                CurrencyRate(it.key, FiatBalance(FiatCurrency.US_DOLLAR, it.value.usd)),
+                CryptoCurrencyRate(it.key, FiatBalance(FiatCurrency.EURO, it.value.eur)),
+                CryptoCurrencyRate(it.key, FiatBalance(FiatCurrency.US_DOLLAR, it.value.usd)),
             )
         }
 }
@@ -73,7 +73,7 @@ class CoingeckoApiClient : ApiClient {
 
     }
 
-    override suspend fun fetchCurrencyRates(): Either<ApiClientError, List<CurrencyRate>> =
+    override suspend fun fetchCurrencyRates(): Either<ApiClientError, List<CryptoCurrencyRate>> =
         Either.catch {
             val result = client.get<CurrencyRatesResponse> {
                 url { encodedPath = "/price" }

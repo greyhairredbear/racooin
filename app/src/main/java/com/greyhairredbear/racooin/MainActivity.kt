@@ -15,7 +15,7 @@ import arrow.core.computations.either
 import com.greyhairredbear.racooin.apiclient.CoingeckoApiClient
 import com.greyhairredbear.racooin.core.interfaces.ApiClient
 import com.greyhairredbear.racooin.core.interfaces.ApiClientError
-import com.greyhairredbear.racooin.core.model.CurrencyRate
+import com.greyhairredbear.racooin.core.model.CryptoCurrencyRate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -57,13 +57,13 @@ private fun MainScreen(
 }
 
 class MainViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow<Resource<List<CurrencyRate>>>(Resource.Loading)
-    val uiState: StateFlow<Resource<List<CurrencyRate>>> = _uiState
+    private val _uiState = MutableStateFlow<Resource<List<CryptoCurrencyRate>>>(Resource.Loading)
+    val uiState: StateFlow<Resource<List<CryptoCurrencyRate>>> = _uiState
     private val apiClient: ApiClient = CoingeckoApiClient() // TODO: DI
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            val test = either<ApiClientError, List<CurrencyRate>> {
+            val test = either<ApiClientError, List<CryptoCurrencyRate>> {
                 val currencyRateResult = apiClient.fetchCurrencyRates().bind()
                 currencyRateResult
             }

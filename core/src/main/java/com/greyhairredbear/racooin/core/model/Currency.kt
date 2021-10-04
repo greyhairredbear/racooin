@@ -13,8 +13,10 @@ enum class FiatCurrency {
     US_DOLLAR,
 }
 
-data class CryptoCurrencyBalance(val cryptoCurrency: CryptoCurrency, val balance: Double)
+data class CryptoBalance(val cryptoCurrency: CryptoCurrency, val balance: Double)
 
 data class FiatBalance(val fiatCurrency: FiatCurrency, val balance: Double)
 
-data class CurrencyRate(val cryptoCurrency: CryptoCurrency, val fiatBalance: FiatBalance)
+data class CryptoCurrencyRate(val cryptoCurrency: CryptoCurrency, val fiatBalance: FiatBalance)
+
+data class CryptoFiatBalance(val cryptoBalance: CryptoBalance, val fiatBalance: FiatBalance)
