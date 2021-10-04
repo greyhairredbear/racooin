@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.LIB_JAVA)
     id(Plugins.LIB_KOTLIN)
+    kotlin(Plugins.SERIALIZATION) version BuildPluginsVersions.KOTLIN
 }
 
 java {
@@ -12,6 +13,8 @@ dependencies {
     implementation(project(mapOf("path" to ":core")))
 
     implementation(Core.KOTLINX_COROUTINES) // TODO: remove?
+
+    implementation(Utils.KOTLIN_SERIALIZATION)
 
     implementation(Server.KTOR_CLIENT_CORE)
     implementation(Server.KTOR_CLIENT_ANDROID)

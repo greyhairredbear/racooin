@@ -3,7 +3,7 @@ package com.greyhairredbear.racooin.core.model
 enum class CryptoCurrency {
     BITCOIN,
     ETHEREUM,
-    DOGE,
+    DOGECOIN,
     LITECOIN,
     RIPPLE,
 }

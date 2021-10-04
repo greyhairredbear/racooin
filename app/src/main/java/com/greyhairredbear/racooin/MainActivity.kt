@@ -68,7 +68,6 @@ class MainViewModel : ViewModel() {
                 currencyRateResult
             }
 
-
             test.fold(
                 ifRight = { _uiState.value = Resource.Success(it) },
                 ifLeft = { _uiState.value = Resource.Error("failed api call") },

@@ -5,6 +5,7 @@ import Versions.BUILD_TOOLS_VERSION
 import Versions.COMPOSE_VERSION
 import Versions.KOTEST_EXTENSIONS_ARROW_VERSION
 import Versions.KOTEST_VERSION
+import Versions.KOTLINX_SERIALIZATION_VERSION
 import Versions.KOTLIN_COROUTINES_VERSION
 import Versions.KTOR_VERSION
 import Versions.LIFECYCLE_VIEWMODEL_COMPOSE_VERSION
@@ -17,12 +18,10 @@ object Versions {
     const val KOTLIN_COROUTINES_VERSION = "1.5.1"
 
     const val ARROW_VERSION = "1.0.0"
+
     const val KTOR_VERSION = "1.6.2"
     const val LOGBACK_VERSION = "1.2.6"
-
-    const val KOTEST_VERSION = "4.6.2"
-    const val KOTEST_EXTENSIONS_ARROW_VERSION = "1.0.3"
-    const val MOCKK_VERSION = "1.12.0"
+    const val KOTLINX_SERIALIZATION_VERSION = "1.3.0"
 
     const val COMPOSE_VERSION = "1.0.1"
     const val SUPPORT_ACTIVITY_VERSION = "1.4.0-alpha01"
@@ -31,6 +30,10 @@ object Versions {
     const val CORE_KTX_VERSION = "1.6.0"
     const val ANDROID_MATERIAL_VERSION = "1.4.0"
     const val LIFECYCLE_VIEWMODEL_COMPOSE_VERSION = "1.0.0-alpha06"
+
+    const val KOTEST_VERSION = "4.6.2"
+    const val KOTEST_EXTENSIONS_ARROW_VERSION = "1.0.3"
+    const val MOCKK_VERSION = "1.12.0"
 
     const val ANDROIDX_TEST_EXT_VERSION = "1.1.2"
     const val ANDROIDX_TEST_VERSION = "1.3.0"
@@ -56,6 +59,7 @@ object Plugins {
 
     const val LIB_JAVA = "java-library"
     const val LIB_KOTLIN = "kotlin"
+    const val SERIALIZATION = "plugin.serialization"
 }
 
 object Sdk {
@@ -77,6 +81,10 @@ object Core {
     const val ARROW_OPTICS = "$ARROW_GROUP:arrow-optics:$ARROW_VERSION"
     const val ARROW_SYNTAX = "$ARROW_GROUP:arrow-syntax:$ARROW_VERSION"
     const val ARROW_META = "$ARROW_GROUP:arrow-meta:$ARROW_VERSION"
+}
+
+object Utils {
+    const val KOTLIN_SERIALIZATION = "$KOTLINX_GROUP:kotlinx-serialization-json:$KOTLINX_SERIALIZATION_VERSION"
 }
 
 object Server {
