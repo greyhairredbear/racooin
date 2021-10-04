@@ -1,9 +1,9 @@
 package com.greyhairredbear.racooin.apiclient
 
 import arrow.core.Either
-import com.greyhairredbear.racooin.core.ApiCallFailed
-import com.greyhairredbear.racooin.core.ApiClient
-import com.greyhairredbear.racooin.core.ApiClientError
+import com.greyhairredbear.racooin.core.interfaces.ApiCallFailed
+import com.greyhairredbear.racooin.core.interfaces.ApiClient
+import com.greyhairredbear.racooin.core.interfaces.ApiClientError
 import com.greyhairredbear.racooin.core.model.CryptoCurrency
 import com.greyhairredbear.racooin.core.model.CurrencyRate
 import com.greyhairredbear.racooin.core.model.FiatBalance

@@ -1,4 +1,4 @@
-package com.greyhairredbear.racooin.core
+package com.greyhairredbear.racooin.core.interfaces
 
 import arrow.core.Either
 import com.greyhairredbear.racooin.core.model.CurrencyRate

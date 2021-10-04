@@ -13,8 +13,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import arrow.core.computations.either
 import com.greyhairredbear.racooin.apiclient.CoingeckoApiClient
-import com.greyhairredbear.racooin.core.ApiClient
-import com.greyhairredbear.racooin.core.ApiClientError
+import com.greyhairredbear.racooin.core.interfaces.ApiClient
+import com.greyhairredbear.racooin.core.interfaces.ApiClientError
 import com.greyhairredbear.racooin.core.model.CurrencyRate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

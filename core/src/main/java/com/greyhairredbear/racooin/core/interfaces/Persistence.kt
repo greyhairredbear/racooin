@@ -1,4 +1,4 @@
-package com.greyhairredbear.racooin.core
+package com.greyhairredbear.racooin.core.interfaces
 
 import com.greyhairredbear.racooin.core.model.CryptoCurrencyBalance
 
