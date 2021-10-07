@@ -1,12 +1,13 @@
-package com.greyhairredbear.racooin.persistence
+package com.greyhairredbear.racooin.persistence.serializer
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import com.google.protobuf.InvalidProtocolBufferException
+import com.greyhairredbear.racooin.persistence.Invests
 import java.io.InputStream
 import java.io.OutputStream
 
-class InvestSerializer: Serializer<Invests> {
+object InvestSerializer: Serializer<Invests> {
     override val defaultValue: Invests = Invests.getDefaultInstance()
 
     override suspend fun readFrom(input: InputStream): Invests {

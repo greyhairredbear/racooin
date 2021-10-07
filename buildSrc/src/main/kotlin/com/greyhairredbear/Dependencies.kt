@@ -3,6 +3,7 @@ import Versions.ANDROID_MATERIAL_VERSION
 import Versions.ARROW_VERSION
 import Versions.BUILD_TOOLS_VERSION
 import Versions.COMPOSE_VERSION
+import Versions.DATASTORE_VERSION
 import Versions.KOTEST_EXTENSIONS_ARROW_VERSION
 import Versions.KOTEST_VERSION
 import Versions.KOTLINX_SERIALIZATION_VERSION
@@ -11,6 +12,7 @@ import Versions.KTOR_VERSION
 import Versions.LIFECYCLE_VIEWMODEL_COMPOSE_VERSION
 import Versions.LOGBACK_VERSION
 import Versions.MOCKK_VERSION
+import Versions.PROTOBUF_VERSION
 import Versions.SUPPORT_ACTIVITY_VERSION
 
 object Versions {
@@ -30,6 +32,7 @@ object Versions {
     const val CORE_KTX_VERSION = "1.6.0"
     const val ANDROID_MATERIAL_VERSION = "1.4.0"
     const val LIFECYCLE_VIEWMODEL_COMPOSE_VERSION = "1.0.0-alpha06"
+    const val DATASTORE_VERSION = "1.0.0"
 
     const val KOTEST_VERSION = "4.6.2"
     const val KOTEST_EXTENSIONS_ARROW_VERSION = "1.0.3"
@@ -38,12 +41,15 @@ object Versions {
     const val ANDROIDX_TEST_EXT_VERSION = "1.1.2"
     const val ANDROIDX_TEST_VERSION = "1.3.0"
     const val ESPRESSO_CORE_VERSION = "3.3.0"
+
+    const val PROTOBUF_VERSION = "3.10.0"
 }
 
 object BuildPluginsVersions {
     const val ANDROID_GRADLE_PLUGIN = "7.0.2"
     const val DETEKT = "1.18.1"
     const val KOTLIN = "1.5.21"
+    const val PROTOBUF = "0.8.12"
 }
 
 object Plugins {
@@ -60,6 +66,8 @@ object Plugins {
     const val LIB_JAVA = "java-library"
     const val LIB_KOTLIN = "kotlin"
     const val SERIALIZATION = "plugin.serialization"
+
+    const val PROTOBUF = "com.google.protobuf"
 }
 
 object Sdk {
@@ -101,16 +109,26 @@ object Server {
 }
 
 object SupportLibs {
-    const val ANDROIDX_LIFECYCLE_GROUP = "androidx.lifecycle"
+    private const val DATASTORE_GROUP = "androidx.datastore"
+    private const val ANDROIDX_LIFECYCLE_GROUP = "androidx.lifecycle"
+
     const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT_VERSION}"
     const val ANDROIDX_CONSTRAINT_LAYOUT =
         "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT_VERSION}"
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX_VERSION}"
     const val ANDROIDX_ACTIVITY = "androidx.activity:activity-compose:$SUPPORT_ACTIVITY_VERSION"
 
+    const val ANDROIDX_DATASTORE = "$DATASTORE_GROUP:datastore:$DATASTORE_VERSION"
 
     const val ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE =
         "$ANDROIDX_LIFECYCLE_GROUP:lifecycle-viewmodel-compose:$LIFECYCLE_VIEWMODEL_COMPOSE_VERSION"
+}
+
+object Protobuf {
+    private const val PROTOBUF_GROUP = "com.google.protobuf"
+
+    const val PROTOBUF_JAVA_LITE = "$PROTOBUF_GROUP:protobuf-javalite:$PROTOBUF_VERSION"
+    const val PROTOBUF_PROTOC = "$PROTOBUF_GROUP:protoc:$PROTOBUF_VERSION"
 }
 
 object Compose {

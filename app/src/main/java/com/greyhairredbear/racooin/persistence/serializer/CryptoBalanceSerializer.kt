@@ -1,12 +1,13 @@
-package com.greyhairredbear.racooin.persistence
+package com.greyhairredbear.racooin.persistence.serializer
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import com.google.protobuf.InvalidProtocolBufferException
+import com.greyhairredbear.racooin.persistence.CryptoBalances
 import java.io.InputStream
 import java.io.OutputStream
 
-class CryptoBalanceSerializer: Serializer<CryptoBalances> {
+object CryptoBalanceSerializer: Serializer<CryptoBalances> {
     override val defaultValue: CryptoBalances = CryptoBalances.getDefaultInstance()
 
     override suspend fun readFrom(input: InputStream): CryptoBalances {

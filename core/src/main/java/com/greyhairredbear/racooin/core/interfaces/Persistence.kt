@@ -6,9 +6,9 @@ import com.greyhairredbear.racooin.core.model.FiatBalance
 
 // TODO model with either
 interface Persistence {
-    fun persistCurrencyBalance(balance: CryptoBalance)
-    fun fetchCurrencyBalance(currency: CryptoCurrency): CryptoBalance
+    fun persistCryptoBalance(balance: CryptoBalance)
+    fun fetchCryptoBalance(currency: CryptoCurrency): CryptoBalance
 
-    fun persistCurrencyInvest(currency: CryptoCurrency, balance: FiatBalance)
-    fun fetchCurrencyInvest(currency: CryptoCurrency): FiatBalance
+    fun persistInvest(currency: CryptoCurrency, balance: FiatBalance)
+    fun fetchInvest(currency: CryptoCurrency): FiatBalance
 }

@@ -17,7 +17,7 @@ suspend fun calculateBalances(
     either {
         val rates = apiClient.fetchCurrencyRates().mapLeft { GeneralUseCaseError }.bind()
         // TODO
-        val cryptoBalances = persistence.fetchCurrencyBalance(CryptoCurrency.BITCOIN)
+        val cryptoBalances = persistence.fetchCryptoBalance(CryptoCurrency.BITCOIN)
 
         listOf()
     }
