@@ -1,5 +1,6 @@
 package com.greyhairredbear.racooin
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,6 +8,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
@@ -16,6 +19,10 @@ import com.greyhairredbear.racooin.apiclient.CoingeckoApiClient
 import com.greyhairredbear.racooin.core.interfaces.ApiClient
 import com.greyhairredbear.racooin.core.interfaces.ApiClientError
 import com.greyhairredbear.racooin.core.model.CryptoCurrencyRate
+import com.greyhairredbear.racooin.persistence.CryptoBalances
+import com.greyhairredbear.racooin.persistence.Invests
+import com.greyhairredbear.racooin.persistence.serializer.CryptoBalanceSerializer
+import com.greyhairredbear.racooin.persistence.serializer.InvestSerializer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -81,3 +88,17 @@ sealed class Resource<out T> {
     data class Error(val message: String) : Resource<Nothing>()
     object Loading : Resource<Nothing>()
 }
+
+private const val DATA_STORE_FILENAME_BALANCES = "balances.pb"
+
+private val Context.cryptoBalancesStore: DataStore<CryptoBalances> by dataStore(
+    fileName = DATA_STORE_FILENAME_BALANCES,
+    serializer = CryptoBalanceSerializer
+)
+
+private const val DATA_STORE_FILENAME_INVESTS = "invests.pb"
+
+private val Context.investsStore: DataStore<Invests> by dataStore(
+    fileName = DATA_STORE_FILENAME_INVESTS,
+    serializer = InvestSerializer
+)

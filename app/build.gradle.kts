@@ -1,6 +1,9 @@
+import com.google.protobuf.gradle.*
+
 plugins {
     id(Plugins.ANDROID_APPLICATION)
     id(Plugins.KOTLIN_ANDROID)
+    id(Plugins.PROTOBUF) version BuildPluginsVersions.PROTOBUF
 }
 
 val installGitHooks by rootProject.tasks.existing
@@ -61,6 +64,9 @@ dependencies {
 
     implementation(SupportLibs.ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE)
 
+    implementation(Protobuf.PROTOBUF_JAVA_LITE)
+
+    implementation(SupportLibs.ANDROIDX_DATASTORE)
     implementation(SupportLibs.ANDROIDX_APPCOMPAT)
     implementation(SupportLibs.ANDROIDX_CORE_KTX)
     implementation(SupportLibs.ANDROIDX_ACTIVITY)
@@ -80,4 +86,23 @@ dependencies {
     androidTestImplementation(AndroidTesting.ESPRESSO_CORE)
 
     debugImplementation(Compose.COMPOSE_UI_TOOLING)
+}
+
+protobuf {
+    protoc {
+        artifact = Protobuf.PROTOBUF_PROTOC
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().forEach { task ->
+            task.plugins {
+                create("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }
