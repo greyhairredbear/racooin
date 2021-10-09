@@ -22,8 +22,10 @@ import com.greyhairredbear.racooin.core.interfaces.Persistence
 import com.greyhairredbear.racooin.core.interfaces.Resource
 import com.greyhairredbear.racooin.core.model.CryptoCurrencyRate
 import com.greyhairredbear.racooin.persistence.CryptoBalances
+import com.greyhairredbear.racooin.persistence.CryptoCurrencyRates
 import com.greyhairredbear.racooin.persistence.Invests
 import com.greyhairredbear.racooin.persistence.serializer.CryptoBalanceSerializer
+import com.greyhairredbear.racooin.persistence.serializer.CryptoCurrencyRateSerializer
 import com.greyhairredbear.racooin.persistence.serializer.InvestSerializer
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -49,6 +51,19 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    // TODO:
+    //  onCreate:
+    //  - calculate balances
+    //  -- load rates
+    //  --- store rates in persistence
+    //      (only call api on force refresh or when older than 1h)
+    //  -- load persisted balances
+    //  -- multiply rates with balances
+    //  -- return balance
+    //  onRefresh:
+    //  - calculate balances
+    //  onChangeCryptoCurrency
 }
 
 @Composable
@@ -104,4 +119,11 @@ private const val DATA_STORE_FILENAME_INVESTS = "invests.pb"
 private val Context.investsStore: DataStore<Invests> by dataStore(
     fileName = DATA_STORE_FILENAME_INVESTS,
     serializer = InvestSerializer
+)
+
+private const val DATA_STORE_FILENAME_RATES = "rates.pb"
+
+private val Context.ratesStore: DataStore<CryptoCurrencyRates> by dataStore(
+    fileName = DATA_STORE_FILENAME_RATES,
+    serializer = CryptoCurrencyRateSerializer
 )
