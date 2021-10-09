@@ -7,7 +7,6 @@ import com.greyhairredbear.racooin.persistence.CryptoCurrencyRates
 import java.io.InputStream
 import java.io.OutputStream
 
-// TODO can this be made generic? using GeneratedMessageLite as bound?
 object CryptoCurrencyRateSerializer : Serializer<CryptoCurrencyRates> {
     override val defaultValue: CryptoCurrencyRates = CryptoCurrencyRates.getDefaultInstance()
 

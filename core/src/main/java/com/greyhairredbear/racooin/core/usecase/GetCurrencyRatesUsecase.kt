@@ -5,6 +5,7 @@ import arrow.core.computations.either
 import com.greyhairredbear.racooin.core.interfaces.ApiClient
 import com.greyhairredbear.racooin.core.interfaces.Persistence
 import com.greyhairredbear.racooin.core.model.CryptoCurrencyRate
+import com.greyhairredbear.racooin.core.model.UsecaseError
 
 suspend fun getCurrencyRates(
     apiClient: ApiClient,
