@@ -18,17 +18,23 @@ import arrow.core.computations.either
 import com.greyhairredbear.racooin.apiclient.CoingeckoApiClient
 import com.greyhairredbear.racooin.core.interfaces.ApiClient
 import com.greyhairredbear.racooin.core.interfaces.ApiClientError
+import com.greyhairredbear.racooin.core.interfaces.Persistence
+import com.greyhairredbear.racooin.core.interfaces.Resource
 import com.greyhairredbear.racooin.core.model.CryptoCurrencyRate
 import com.greyhairredbear.racooin.persistence.CryptoBalances
 import com.greyhairredbear.racooin.persistence.Invests
 import com.greyhairredbear.racooin.persistence.serializer.CryptoBalanceSerializer
 import com.greyhairredbear.racooin.persistence.serializer.InvestSerializer
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,10 +69,13 @@ private fun MainScreen(
     }
 }
 
-class MainViewModel : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val apiClient: ApiClient,
+    private val persistence: Persistence,
+) : ViewModel() {
     private val _uiState = MutableStateFlow<Resource<List<CryptoCurrencyRate>>>(Resource.Loading)
     val uiState: StateFlow<Resource<List<CryptoCurrencyRate>>> = _uiState
-    private val apiClient: ApiClient = CoingeckoApiClient() // TODO: DI
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -81,12 +90,6 @@ class MainViewModel : ViewModel() {
             )
         }
     }
-}
-
-sealed class Resource<out T> {
-    data class Success<out T>(val data: T) : Resource<T>()
-    data class Error(val message: String) : Resource<Nothing>()
-    object Loading : Resource<Nothing>()
 }
 
 private const val DATA_STORE_FILENAME_BALANCES = "balances.pb"

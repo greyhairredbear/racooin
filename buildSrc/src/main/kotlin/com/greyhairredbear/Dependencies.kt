@@ -1,9 +1,11 @@
+import Android.DAGGER_GROUP
 import Core.KOTLINX_GROUP
 import Versions.ANDROID_MATERIAL_VERSION
 import Versions.ARROW_VERSION
 import Versions.BUILD_TOOLS_VERSION
 import Versions.COMPOSE_VERSION
 import Versions.DATASTORE_VERSION
+import Versions.HILT_VERSION
 import Versions.KOTEST_EXTENSIONS_ARROW_VERSION
 import Versions.KOTEST_VERSION
 import Versions.KOTLINX_SERIALIZATION_VERSION
@@ -25,6 +27,7 @@ object Versions {
     const val LOGBACK_VERSION = "1.2.6"
     const val KOTLINX_SERIALIZATION_VERSION = "1.3.0"
 
+    const val HILT_VERSION = "2.38.1"
     const val COMPOSE_VERSION = "1.0.1"
     const val SUPPORT_ACTIVITY_VERSION = "1.4.0-alpha01"
     const val APP_COMPAT_VERSION = "1.2.0"
@@ -56,10 +59,14 @@ object Plugins {
     const val KOTLIN = "org.jetbrains.kotlin.jvm"
     const val DETEKT = "io.gitlab.arturbosch.detekt"
     const val ANDROID = "android"
+    const val HILT = "dagger.hilt.android.plugin"
+    const val KAPT = "kapt"
 
     const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:$BUILD_TOOLS_VERSION"
     const val KOTLIN_GRADLE_PLUGIN =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${BuildPluginsVersions.KOTLIN}"
+    const val HILT_ANDROID_GRADLE_PLUGIN =
+        "$DAGGER_GROUP:hilt-android-gradle-plugin:$HILT_VERSION"
     const val ANDROID_APPLICATION = "com.android.application"
     const val KOTLIN_ANDROID = "kotlin-android"
 
@@ -92,7 +99,8 @@ object Core {
 }
 
 object Utils {
-    const val KOTLIN_SERIALIZATION = "$KOTLINX_GROUP:kotlinx-serialization-json:$KOTLINX_SERIALIZATION_VERSION"
+    const val KOTLIN_SERIALIZATION =
+        "$KOTLINX_GROUP:kotlinx-serialization-json:$KOTLINX_SERIALIZATION_VERSION"
 }
 
 object Server {
@@ -108,9 +116,13 @@ object Server {
     const val LOGBACK = "$LOGBACK_GROUP:logback-classic:$LOGBACK_VERSION"
 }
 
-object SupportLibs {
+object Android {
+    const val DAGGER_GROUP = "com.google.dagger"
     private const val DATASTORE_GROUP = "androidx.datastore"
     private const val ANDROIDX_LIFECYCLE_GROUP = "androidx.lifecycle"
+
+    const val HILT_ANDROID = "$DAGGER_GROUP:hilt-android:$HILT_VERSION"
+    const val HILT_ANDROID_COMPILER = "$DAGGER_GROUP:hilt-android-compiler:$HILT_VERSION"
 
     const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT_VERSION}"
     const val ANDROIDX_CONSTRAINT_LAYOUT =

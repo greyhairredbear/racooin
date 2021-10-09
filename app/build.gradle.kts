@@ -1,9 +1,14 @@
-import com.google.protobuf.gradle.*
+import com.google.protobuf.gradle.generateProtoTasks
+import com.google.protobuf.gradle.plugins
+import com.google.protobuf.gradle.protobuf
+import com.google.protobuf.gradle.protoc
 
 plugins {
+    kotlin(Plugins.KAPT)
     id(Plugins.ANDROID_APPLICATION)
     id(Plugins.KOTLIN_ANDROID)
     id(Plugins.PROTOBUF) version BuildPluginsVersions.PROTOBUF
+    id(Plugins.HILT)
 }
 
 val installGitHooks by rootProject.tasks.existing
@@ -61,16 +66,18 @@ dependencies {
     implementation(Compose.COMPOSE_MATERIAL)
     implementation(Compose.COMPOSE_UI_TOOLING_PREVIEW)
     implementation(Compose.COMPOSE_FOUNDATION)
-
-    implementation(SupportLibs.ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE)
+    implementation(Android.ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE)
 
     implementation(Protobuf.PROTOBUF_JAVA_LITE)
+    implementation(Android.ANDROIDX_DATASTORE)
 
-    implementation(SupportLibs.ANDROIDX_DATASTORE)
-    implementation(SupportLibs.ANDROIDX_APPCOMPAT)
-    implementation(SupportLibs.ANDROIDX_CORE_KTX)
-    implementation(SupportLibs.ANDROIDX_ACTIVITY)
+    implementation(Android.ANDROIDX_APPCOMPAT)
+    implementation(Android.ANDROIDX_CORE_KTX)
+    implementation(Android.ANDROIDX_ACTIVITY)
     implementation (GoogleLibs.ANDROID_MATERIAL)
+
+    implementation(Android.HILT_ANDROID)
+    kapt(Android.HILT_ANDROID_COMPILER)
 
     testImplementation(Testing.KOTEST_RUNNER)
     testImplementation(Testing.KOTEST_JUNIT_RUNNER)
@@ -86,6 +93,10 @@ dependencies {
     androidTestImplementation(AndroidTesting.ESPRESSO_CORE)
 
     debugImplementation(Compose.COMPOSE_UI_TOOLING)
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 protobuf {

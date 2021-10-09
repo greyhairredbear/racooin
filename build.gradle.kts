@@ -11,6 +11,7 @@ buildscript {
     dependencies {
         classpath(Plugins.ANDROID_GRADLE_PLUGIN)
         classpath(Plugins.KOTLIN_GRADLE_PLUGIN)
+        classpath(Plugins.HILT_ANDROID_GRADLE_PLUGIN)
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
