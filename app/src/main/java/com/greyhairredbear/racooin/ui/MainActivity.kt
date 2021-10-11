@@ -15,11 +15,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import arrow.core.computations.either
-import com.greyhairredbear.racooin.apiclient.CoingeckoApiClient
 import com.greyhairredbear.racooin.core.interfaces.ApiClient
-import com.greyhairredbear.racooin.core.interfaces.ApiClientError
 import com.greyhairredbear.racooin.core.interfaces.Persistence
 import com.greyhairredbear.racooin.core.interfaces.Resource
+import com.greyhairredbear.racooin.core.model.ApiClientError
 import com.greyhairredbear.racooin.core.model.CryptoCurrencyRate
 import com.greyhairredbear.racooin.persistence.CryptoBalances
 import com.greyhairredbear.racooin.persistence.CryptoCurrencyRates
@@ -40,6 +39,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MainScreen()
         }
@@ -106,24 +106,3 @@ class MainViewModel @Inject constructor(
         }
     }
 }
-
-private const val DATA_STORE_FILENAME_BALANCES = "balances.pb"
-
-private val Context.cryptoBalancesStore: DataStore<CryptoBalances> by dataStore(
-    fileName = DATA_STORE_FILENAME_BALANCES,
-    serializer = CryptoBalanceSerializer
-)
-
-private const val DATA_STORE_FILENAME_INVESTS = "invests.pb"
-
-private val Context.investsStore: DataStore<Invests> by dataStore(
-    fileName = DATA_STORE_FILENAME_INVESTS,
-    serializer = InvestSerializer
-)
-
-private const val DATA_STORE_FILENAME_RATES = "rates.pb"
-
-private val Context.ratesStore: DataStore<CryptoCurrencyRates> by dataStore(
-    fileName = DATA_STORE_FILENAME_RATES,
-    serializer = CryptoCurrencyRateSerializer
-)
