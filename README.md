@@ -1,8 +1,9 @@
-# android-template
+# RaCooin
 
-Template for Android Projects. 
+
+
+RaCooin (a mix of **Ra**te, **Coin** and the cute animal) 
+is a minimalistic app for tracking the current fiat money value of one's crypto currencies.
 
 # TODO
-
 - Add CI Workflow to publish to google play
-- Add Jetpack Compose once stable
