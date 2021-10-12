@@ -14,7 +14,11 @@ suspend fun calculateBalances(
     persistence: Persistence,
 ): Either<UsecaseError, List<FiatBalance>> =
     either {
-        val rates = getCurrencyRates(apiClient, persistence).bind()
+        val rates = getCurrencyRates(
+            { persistence.fetchCurrencyRates() },
+            { apiClient.fetchCurrencyRates() },
+            { persistence.persistCurrencyRates(it) }
+        ).bind()
         val cryptoBalances = persistence.fetchAllCryptoBalances().bind()
         val result = cryptoBalances.toFiatBalances(rates).bind()
         result

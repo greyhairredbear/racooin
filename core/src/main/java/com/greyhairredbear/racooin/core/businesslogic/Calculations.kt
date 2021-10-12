@@ -6,6 +6,7 @@ import arrow.core.computations.either
 import arrow.core.flatMap
 import arrow.core.left
 import arrow.core.right
+import arrow.core.traverseEither
 import com.greyhairredbear.racooin.core.model.ComputationFailedError
 import com.greyhairredbear.racooin.core.model.CryptoBalance
 import com.greyhairredbear.racooin.core.model.CryptoCurrencyRate
@@ -13,18 +14,19 @@ import com.greyhairredbear.racooin.core.model.FiatBalance
 
 // TODO
 //  test
-//  error vs none
-fun CryptoBalance.toFiatBalance(rate: CryptoCurrencyRate): Either<None, FiatBalance> {
+//  error modelling
+fun CryptoBalance.toFiatBalance(rate: CryptoCurrencyRate): Either<ComputationFailedError, FiatBalance> {
     return when {
-        cryptoCurrency != rate.cryptoCurrency -> None.left()
+        cryptoCurrency != rate.cryptoCurrency -> ComputationFailedError.left()
         else -> rate.fiatBalance.copy(balance = balance * rate.fiatBalance.balance).right()
     }
 }
 
-fun List<CryptoBalance>.toFiatBalances(rates: List<CryptoCurrencyRate>): Either<ComputationFailedError, List<FiatBalance>> {
-    return listOf<FiatBalance>().right() // TODO
-//    return map { cryptoBalance ->
-//            cryptoBalance.toFiatBalance(rates.first { it.cryptoCurrency == cryptoBalance.cryptoCurrency }) // TODO catch first exception
-//                .mapLeft { ComputationFailedError }
-//    }.right()
-}
+// TODO: support multiple rates
+fun List<CryptoBalance>.toFiatBalances(rates: List<CryptoCurrencyRate>): Either<ComputationFailedError, List<FiatBalance>> =
+    traverseEither { balance ->
+        balance.toFiatBalance(
+            rates.firstOrNull { it.cryptoCurrency == balance.cryptoCurrency }
+                ?: return ComputationFailedError.left()
+        )
+    }

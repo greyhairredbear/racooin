@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import arrow.core.Either
 import arrow.core.Either.Companion.catch
+import com.google.protobuf.Timestamp
 import com.greyhairredbear.racooin.core.interfaces.Persistence
 import com.greyhairredbear.racooin.core.model.CryptoBalance
 import com.greyhairredbear.racooin.core.model.CryptoCurrency
