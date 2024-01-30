@@ -18,7 +18,7 @@ import Versions.PROTOBUF_VERSION
 import Versions.SUPPORT_ACTIVITY_VERSION
 
 object Versions {
-    const val BUILD_TOOLS_VERSION = "7.0.2"
+    const val BUILD_TOOLS_VERSION = "8.2.0"
     const val KOTLIN_COROUTINES_VERSION = "1.5.1"
 
     const val ARROW_VERSION = "1.0.0"
@@ -27,14 +27,14 @@ object Versions {
     const val LOGBACK_VERSION = "1.2.6"
     const val KOTLINX_SERIALIZATION_VERSION = "1.3.0"
 
-    const val HILT_VERSION = "2.38.1"
-    const val COMPOSE_VERSION = "1.0.1"
+    const val HILT_VERSION = "2.46"
+    const val COMPOSE_VERSION = "1.6.0"
     const val SUPPORT_ACTIVITY_VERSION = "1.4.0-alpha01"
     const val APP_COMPAT_VERSION = "1.2.0"
     const val CONSTRAINT_LAYOUT_VERSION = "2.0.4"
     const val CORE_KTX_VERSION = "1.6.0"
     const val ANDROID_MATERIAL_VERSION = "1.4.0"
-    const val LIFECYCLE_VIEWMODEL_COMPOSE_VERSION = "1.0.0-alpha06"
+    const val LIFECYCLE_VIEWMODEL_COMPOSE_VERSION = "2.7.0"
     const val DATASTORE_VERSION = "1.0.0"
 
     const val KOTEST_VERSION = "4.6.2"
@@ -45,14 +45,13 @@ object Versions {
     const val ANDROIDX_TEST_VERSION = "1.3.0"
     const val ESPRESSO_CORE_VERSION = "3.3.0"
 
-    const val PROTOBUF_VERSION = "3.14.0"
+    const val PROTOBUF_VERSION = "3.25.2"
 }
 
 object BuildPluginsVersions {
-    const val ANDROID_GRADLE_PLUGIN = "7.0.2"
-    const val DETEKT = "1.18.1"
-    const val KOTLIN = "1.5.21"
-    const val PROTOBUF = "0.8.12"
+    const val DETEKT = "1.23.3"
+    const val KOTLIN = "1.9.22"
+    const val PROTOBUF = "0.9.4"
 }
 
 object Plugins {
@@ -62,7 +61,6 @@ object Plugins {
     const val HILT = "dagger.hilt.android.plugin"
     const val KAPT = "kapt"
 
-    const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:$BUILD_TOOLS_VERSION"
     const val KOTLIN_GRADLE_PLUGIN =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${BuildPluginsVersions.KOTLIN}"
     const val HILT_ANDROID_GRADLE_PLUGIN =
@@ -78,8 +76,8 @@ object Plugins {
 }
 
 object Sdk {
-    const val COMPILE_SDK_VERSION = 31
-    const val TARGET_SDK_VERSION = 31
+    const val COMPILE_SDK_VERSION = 34
+    const val TARGET_SDK_VERSION = 34
     const val MIN_SDK_VERSION = 23
 }
 

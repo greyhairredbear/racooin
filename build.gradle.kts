@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.ANDROID_APPLICATION) version BuildPluginsVersions.ANDROID_GRADLE_PLUGIN apply false
+    id("com.android.application") version "8.2.0" apply false
     kotlin(Plugins.ANDROID) version BuildPluginsVersions.KOTLIN apply false
     id(Plugins.DETEKT) version BuildPluginsVersions.DETEKT
 }
@@ -9,7 +9,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath(Plugins.ANDROID_GRADLE_PLUGIN)
+        classpath("com.android.tools.build:gradle:8.2.0")
         classpath(Plugins.KOTLIN_GRADLE_PLUGIN)
         classpath(Plugins.HILT_ANDROID_GRADLE_PLUGIN)
 
