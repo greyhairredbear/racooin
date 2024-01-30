@@ -3,7 +3,6 @@ import Core.KOTLINX_GROUP
 import Versions.ACCOMPANIST_VERSION
 import Versions.ANDROID_MATERIAL_VERSION
 import Versions.ARROW_VERSION
-import Versions.BUILD_TOOLS_VERSION
 import Versions.COMPOSE_VERSION
 import Versions.DATASTORE_VERSION
 import Versions.HILT_VERSION
@@ -19,8 +18,7 @@ import Versions.PROTOBUF_VERSION
 import Versions.SUPPORT_ACTIVITY_VERSION
 
 object Versions {
-    const val JVM_TARGET = "11"
-    const val BUILD_TOOLS_VERSION = "8.2.0"
+    const val JVM_TARGET = "17"
     const val KOTLIN_COROUTINES_VERSION = "1.5.1"
 
     const val ARROW_VERSION = "1.0.0"
