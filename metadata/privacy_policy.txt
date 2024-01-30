@@ -1,0 +1,1 @@
+This application does not collect or share personal data. All data is kept locally on the user's device. 
